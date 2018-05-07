@@ -1,6 +1,7 @@
 import {
   Component, ChangeDetectorRef, transition, state, trigger, style, animate,
-  NgZone, OnDestroy, AnimationTransitionEvent} from '@angular/core';
+  NgZone, OnDestroy } from '@angular/core';
+import { AnimationEvent } from '@angular/animations'
 import {Toast} from './toast';
 import {ToastOptions} from './toast-options';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -194,7 +195,7 @@ export class ToastContainer implements OnDestroy {
     return null;
   }
 
-  onAnimationEnd(event: AnimationTransitionEvent) {
+  onAnimationEnd(event: AnimationEvent) {
     if (event.toState === 'void' && !this.anyToast()) {
       this._ngExit();
     } else if (this._fresh && event.fromState === 'void') {
